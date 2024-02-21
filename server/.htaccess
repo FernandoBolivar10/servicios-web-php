@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteBase /servicios-web-php/
+
+# Redirigir solicitudes con acción e ID al index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+)/?$ server/index.php?action=$1&id=$2 [QSA,L]
+
+# Redirigir todas las demás solicitudes al index.php solo con la acción
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ server/index.php?action=$1 [QSA,L]
